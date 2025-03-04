@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
+import 'text_styles.dart';
 
 ThemeData appTheme(BuildContext context) {
   return ThemeData.from(
@@ -9,5 +10,10 @@ ThemeData appTheme(BuildContext context) {
       seedColor: ColorConstants.clynkGreen,
       brightness: Brightness.light,
     ),
-  ).copyWith(scaffoldBackgroundColor: ColorConstants.clynkGreen);
+  ).copyWith(
+    scaffoldBackgroundColor: ColorConstants.clynkGreen,
+    textTheme: ThemeData.light().textTheme.apply(
+      fontFamily: FontFamilyConstants.figtree,
+    ),
+  );
 }
