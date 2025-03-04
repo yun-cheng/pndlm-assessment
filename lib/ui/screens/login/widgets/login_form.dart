@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'account_input_field.dart';
+import 'password_input_field.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -12,7 +13,11 @@ class LoginForm extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [AccountInputField()],
+        children: [
+          AccountInputField(),
+          SizedBox(height: 24),
+          PasswordInputField(),
+        ],
       ),
     );
   }
