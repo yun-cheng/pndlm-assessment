@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'account_input_field.dart';
+import 'forget_password_link.dart';
 import 'password_input_field.dart';
 
 class LoginForm extends StatelessWidget {
@@ -17,6 +18,8 @@ class LoginForm extends StatelessWidget {
           AccountInputField(),
           SizedBox(height: 24),
           PasswordInputField(),
+          SizedBox(height: 10),
+          Align(alignment: Alignment.centerRight, child: ForgetPasswordLink()),
         ],
       ),
     );

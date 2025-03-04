@@ -12,4 +12,14 @@ class TextStyleConstants {
     letterSpacing: 0,
     color: Colors.white,
   );
+
+  static const link = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.5,
+    letterSpacing: 0,
+    color: Colors.white,
+    decoration: TextDecoration.underline,
+    decorationColor: Colors.white,
+  );
 }
