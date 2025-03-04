@@ -15,5 +15,19 @@ ThemeData appTheme(BuildContext context) {
     textTheme: ThemeData.light().textTheme.apply(
       fontFamily: FontFamilyConstants.figtree,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: Colors.white,
+      errorMaxLines: 2,
+      helperMaxLines: 2,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(color: ColorConstants.clynkGreen),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(color: ColorConstants.clynkGreen),
+      ),
+    ),
   );
 }

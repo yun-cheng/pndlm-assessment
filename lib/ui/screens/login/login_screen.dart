@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pndlm_assessment/ui/common/background_mask_container.dart';
 import 'package:pndlm_assessment/ui/common/clock_logo.dart';
 
+import 'widgets/login_form.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -22,6 +24,8 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 3),
                 child: ClockLogo(),
               ),
+              SizedBox(height: 80),
+              LoginForm(),
             ],
           ),
         ),
