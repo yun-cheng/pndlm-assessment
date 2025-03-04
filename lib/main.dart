@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pndlm_assessment/constants/app_theme.dart';
 import 'package:pndlm_assessment/ui/common/background_mask.dart';
 import 'package:pndlm_assessment/ui/common/clock_logo.dart';
 
@@ -11,7 +12,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: appTheme(context),
       home: Scaffold(
         body: Stack(
           children: [
