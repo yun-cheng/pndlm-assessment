@@ -7,6 +7,7 @@ import 'package:pndlm_assessment/exceptions/http_exceptions.dart';
 import 'package:pndlm_assessment/models/serializers.dart';
 import 'package:pndlm_assessment/models/user.dart';
 import 'package:pndlm_assessment/services/http_client.dart';
+import 'package:pndlm_assessment/storages/token_storage.dart';
 
 abstract class IAuthRepository {
   Future<User> login({
@@ -14,6 +15,7 @@ abstract class IAuthRepository {
     required String password,
     required bool shouldRememberUser,
   });
+  Future<void> refreshAccessToken();
 }
 
 class AuthRepository implements IAuthRepository {
@@ -65,6 +67,38 @@ class AuthRepository implements IAuthRepository {
         final data = response.data;
 
         return serializers.deserializeWith(User.serializer, data) as User;
+      } else {
+        throw UnknownHttpException();
+      }
+    } on DioException catch (e) {
+      _handleDioException(e);
+    } catch (e) {
+      throw UnknownHttpException();
+    }
+  }
+
+  @override
+  Future<void> refreshAccessToken() async {
+    final dio = _ref.read(dioProvider);
+    final tokenStorage = _ref.read(tokenStorageProvider);
+
+    final refreshToken = await tokenStorage.getRefreshToken();
+    if (refreshToken == null) {
+      throw UnknownHttpException();
+    }
+
+    try {
+      final response = await dio.post(
+        HttpConstants.refresh,
+        data: {'refreshToken': refreshToken, 'expiresInMins': 1},
+        options: Options(headers: {'Content-Type': 'application/json'}),
+      );
+
+      if (response.statusCode == HttpStatus.ok) {
+        final data = response.data;
+
+        await tokenStorage.saveAccessToken(data['accessToken']);
+        await tokenStorage.saveRefreshToken(data['refreshToken']);
       } else {
         throw UnknownHttpException();
       }
