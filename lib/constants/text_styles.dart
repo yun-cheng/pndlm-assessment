@@ -5,6 +5,14 @@ class FontFamilyConstants {
 }
 
 class TextStyleConstants {
+  static const body = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.5,
+    letterSpacing: 0,
+    color: Colors.white,
+  );
+
   static const inputTitle = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,

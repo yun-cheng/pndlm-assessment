@@ -3,6 +3,7 @@ import 'package:pndlm_assessment/ui/common/background_mask_container.dart';
 import 'package:pndlm_assessment/ui/common/clock_logo.dart';
 
 import 'widgets/login_form.dart';
+import 'widgets/register_link.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -26,6 +27,11 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 80),
               LoginForm(),
+              SizedBox(height: 122),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: RegisterLink(),
+              ),
             ],
           ),
         ),
