@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pndlm_assessment/constants/text_styles.dart';
+import 'package:pndlm_assessment/providers/auth_state_provider.dart';
 import 'package:pndlm_assessment/utils/account_validator.dart';
 
-class AccountInputField extends StatelessWidget {
+class AccountInputField extends ConsumerWidget {
   const AccountInputField({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isValidating = ref.watch(isValidatingProvider);
+    final isInvalidCredentials = ref.watch(isInvalidCredentialsProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -16,9 +21,18 @@ class AccountInputField extends StatelessWidget {
           autocorrect: false,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
-          autovalidateMode: AutovalidateMode.always,
-          validator: (value) => accountValidator(value ?? '')?.text(),
-          onChanged: (value) {},
+          autovalidateMode:
+              isValidating
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+          validator:
+              (value) =>
+                  isInvalidCredentials
+                      ? 'Invalid account or password'
+                      : accountValidator(value ?? '')?.text(),
+          onChanged: (value) {
+            ref.read(authStateNotifierProvider.notifier).updateAccount(value);
+          },
         ),
       ],
     );
