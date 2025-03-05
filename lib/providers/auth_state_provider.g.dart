@@ -40,7 +40,24 @@ final isInvalidCredentialsProvider = AutoDisposeProvider<bool>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef IsInvalidCredentialsRef = AutoDisposeProviderRef<bool>;
-String _$authStateNotifierHash() => r'fab0b0a92d3183f117cfca9168e361d358a0a224';
+String _$authIsLoadingHash() => r'aff747c76a5762456d34f44a0dce6bed1bdde1c3';
+
+/// See also [authIsLoading].
+@ProviderFor(authIsLoading)
+final authIsLoadingProvider = AutoDisposeProvider<bool>.internal(
+  authIsLoading,
+  name: r'authIsLoadingProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authIsLoadingHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthIsLoadingRef = AutoDisposeProviderRef<bool>;
+String _$authStateNotifierHash() => r'9e67d12894bad2af328c0d6404892e6dba92d352';
 
 /// See also [AuthStateNotifier].
 @ProviderFor(AuthStateNotifier)
