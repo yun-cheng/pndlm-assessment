@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pndlm_assessment/constants/colors.dart';
 import 'package:pndlm_assessment/constants/text_styles.dart';
+import 'package:pndlm_assessment/utils/password_validator.dart';
 
 class PasswordInputField extends HookWidget {
   const PasswordInputField({super.key});
@@ -19,6 +21,9 @@ class PasswordInputField extends HookWidget {
         TextFormField(
           obscureText: !showPassword.value,
           textInputAction: TextInputAction.done,
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value) => passwordValidator(value ?? '')?.text(),
+          inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'\s'))],
           decoration: InputDecoration(
             suffixIcon: Padding(
               padding: const EdgeInsets.only(right: 7),

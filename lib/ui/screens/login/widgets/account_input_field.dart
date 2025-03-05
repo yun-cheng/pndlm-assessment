@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pndlm_assessment/constants/text_styles.dart';
+import 'package:pndlm_assessment/utils/account_validator.dart';
 
 class AccountInputField extends StatelessWidget {
   const AccountInputField({super.key});
@@ -15,6 +16,8 @@ class AccountInputField extends StatelessWidget {
           autocorrect: false,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value) => accountValidator(value ?? '')?.text(),
           onChanged: (value) {},
         ),
       ],
