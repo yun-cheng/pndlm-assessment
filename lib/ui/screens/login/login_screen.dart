@@ -14,29 +14,31 @@ class LoginScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     _authErrorMessageListener(context, ref);
 
-    return BackgroundMaskContainer(
-      child: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 143),
-              Padding(
-                padding: const EdgeInsets.only(left: 3),
-                child: ClockLogo(),
-              ),
-              SizedBox(height: 80),
-              LoginForm(),
-              SizedBox(height: 122),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: RegisterLink(),
-              ),
-            ],
+    return Scaffold(
+      body: BackgroundMaskContainer(
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 143),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3),
+                  child: ClockLogo(),
+                ),
+                SizedBox(height: 80),
+                LoginForm(),
+                SizedBox(height: 122),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: RegisterLink(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
