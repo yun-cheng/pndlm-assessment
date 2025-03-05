@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pndlm_assessment/exceptions/http_exceptions.dart';
 import 'package:pndlm_assessment/models/auth_state.dart';
 import 'package:pndlm_assessment/repositories/auth/auth_repository.dart';
+import 'package:pndlm_assessment/storages/token_storage.dart';
 import 'package:pndlm_assessment/utils/account_validator.dart';
 import 'package:pndlm_assessment/utils/password_validator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -66,7 +67,7 @@ class AuthStateNotifier extends _$AuthStateNotifier {
         shouldRememberUser: shouldRememberUser,
       );
 
-      ref.read(userNotifierProvider.notifier).updateUser(user);
+      await ref.read(userNotifierProvider.notifier).updateUser(user);
 
       state = AuthState();
     } catch (e) {
@@ -79,6 +80,17 @@ class AuthStateNotifier extends _$AuthStateNotifier {
                   e is InvalidCredentialsException ? '' : e.toString(),
       );
     }
+  }
+
+  Future<void> handleLogout() async {
+    state = state.rebuild((b) => b..isLoading = true);
+
+    await ref.read(userNotifierProvider.notifier).clearUser();
+
+    final tokenStorage = ref.read(tokenStorageProvider);
+    await tokenStorage.clearTokens();
+
+    state = AuthState();
   }
 }
 

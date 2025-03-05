@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pndlm_assessment/ui/common/background_mask_container.dart';
 
+import 'widgets/logout_button.dart';
+
 class ClocksScreen extends StatelessWidget {
   const ClocksScreen({super.key});
 
@@ -14,7 +16,7 @@ class ClocksScreen extends StatelessWidget {
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height,
             ),
-            child: Column(mainAxisSize: MainAxisSize.min, children: []),
+            child: Center(child: LogoutButton()),
           ),
         ),
       ),
