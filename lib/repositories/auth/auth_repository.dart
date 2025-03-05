@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pndlm_assessment/constants/http.dart';
 import 'package:pndlm_assessment/exceptions/http_exceptions.dart';
+import 'package:pndlm_assessment/models/serializers.dart';
+import 'package:pndlm_assessment/models/user.dart';
 import 'package:pndlm_assessment/services/http_client.dart';
 
 abstract class IAuthRepository {
-  Future<void> login({
+  Future<User> login({
     required String account,
     required String password,
     required bool shouldRememberUser,
@@ -40,7 +42,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<void> login({
+  Future<User> login({
     required String account,
     required String password,
     required bool shouldRememberUser,
@@ -62,7 +64,7 @@ class AuthRepository implements IAuthRepository {
       if (response.statusCode == HttpStatus.ok) {
         final data = response.data;
 
-        return;
+        return serializers.deserializeWith(User.serializer, data) as User;
       } else {
         throw UnknownHttpException();
       }
