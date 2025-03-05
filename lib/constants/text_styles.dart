@@ -30,4 +30,12 @@ class TextStyleConstants {
     letterSpacing: 0,
     color: Colors.white,
   );
+
+  static const button = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    height: 11 / 16,
+    letterSpacing: 0,
+    color: Colors.white,
+  );
 }
