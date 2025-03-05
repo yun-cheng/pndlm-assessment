@@ -15,6 +15,16 @@ ThemeData appTheme(BuildContext context) {
     textTheme: ThemeData.light().textTheme.apply(
       fontFamily: FontFamilyConstants.figtree,
     ),
+    splashFactory: NoSplash.splashFactory,
+    checkboxTheme: CheckboxThemeData(
+      side: BorderSide(color: Colors.white, width: 0),
+      fillColor: WidgetStateProperty.all(Colors.white),
+      checkColor: WidgetStateProperty.all(ColorConstants.checkGreen),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.white),
+        borderRadius: BorderRadius.circular(7),
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white,

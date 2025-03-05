@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'account_input_field.dart';
 import 'forget_password_link.dart';
 import 'password_input_field.dart';
+import 'remember_me_checkbox.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -20,6 +21,11 @@ class LoginForm extends StatelessWidget {
           PasswordInputField(),
           SizedBox(height: 10),
           Align(alignment: Alignment.centerRight, child: ForgetPasswordLink()),
+          SizedBox(height: 27),
+          Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: RememberMeCheckbox(),
+          ),
         ],
       ),
     );

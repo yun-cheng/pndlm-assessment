@@ -22,4 +22,12 @@ class TextStyleConstants {
     decoration: TextDecoration.underline,
     decorationColor: Colors.white,
   );
+
+  static const checkbox = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    height: 11 / 16,
+    letterSpacing: 0,
+    color: Colors.white,
+  );
 }
