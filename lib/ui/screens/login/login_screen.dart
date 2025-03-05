@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pndlm_assessment/providers/auth_state_provider.dart';
 import 'package:pndlm_assessment/ui/common/background_mask_container.dart';
 import 'package:pndlm_assessment/ui/common/clock_logo.dart';
 
 import 'widgets/login_form.dart';
 import 'widgets/register_link.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    _authErrorMessageListener(context, ref);
+
     return BackgroundMaskContainer(
       child: SingleChildScrollView(
         child: Container(
@@ -38,4 +42,14 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void _authErrorMessageListener(BuildContext context, WidgetRef ref) {
+  ref.listen<String>(authErrorMessageProvider, (previous, next) {
+    if (next.isNotEmpty) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(next)));
+    }
+  });
 }

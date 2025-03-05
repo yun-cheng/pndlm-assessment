@@ -1,8 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pndlm_assessment/exceptions/http_exceptions.dart';
 import 'package:pndlm_assessment/models/auth_state.dart';
+import 'package:pndlm_assessment/repositories/auth/auth_repository.dart';
 import 'package:pndlm_assessment/utils/account_validator.dart';
 import 'package:pndlm_assessment/utils/password_validator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'user_provider.dart';
 
 part 'auth_state_provider.g.dart';
 
@@ -45,6 +49,7 @@ class AuthStateNotifier extends _$AuthStateNotifier {
 
     final account = state.account;
     final password = state.password;
+    final shouldRememberUser = state.shouldRememberUser;
 
     if (accountValidator(account) != null ||
         passwordValidator(password) != null) {
@@ -53,7 +58,27 @@ class AuthStateNotifier extends _$AuthStateNotifier {
 
     state = state.rebuild((b) => b..isLoading = true);
 
-    state = AuthState();
+    try {
+      final authRepository = ref.read(authRepositoryProvider);
+      final user = await authRepository.login(
+        account: account,
+        password: password,
+        shouldRememberUser: shouldRememberUser,
+      );
+
+      ref.read(userNotifierProvider.notifier).updateUser(user);
+
+      state = AuthState();
+    } catch (e) {
+      state = state.rebuild(
+        (b) =>
+            b
+              ..isLoading = false
+              ..isInvalidCredentials = e is InvalidCredentialsException
+              ..errorMessage =
+                  e is InvalidCredentialsException ? '' : e.toString(),
+      );
+    }
   }
 }
 
@@ -75,5 +100,12 @@ bool isInvalidCredentials(Ref ref) {
 bool authIsLoading(Ref ref) {
   return ref.watch(
     authStateNotifierProvider.select((state) => state.isLoading),
+  );
+}
+
+@riverpod
+String authErrorMessage(Ref ref) {
+  return ref.watch(
+    authStateNotifierProvider.select((state) => state.errorMessage),
   );
 }

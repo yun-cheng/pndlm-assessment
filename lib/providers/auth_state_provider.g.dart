@@ -57,7 +57,24 @@ final authIsLoadingProvider = AutoDisposeProvider<bool>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AuthIsLoadingRef = AutoDisposeProviderRef<bool>;
-String _$authStateNotifierHash() => r'9e67d12894bad2af328c0d6404892e6dba92d352';
+String _$authErrorMessageHash() => r'b835eff9857484ffba45b2b1d89a36798dac3658';
+
+/// See also [authErrorMessage].
+@ProviderFor(authErrorMessage)
+final authErrorMessageProvider = AutoDisposeProvider<String>.internal(
+  authErrorMessage,
+  name: r'authErrorMessageProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authErrorMessageHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthErrorMessageRef = AutoDisposeProviderRef<String>;
+String _$authStateNotifierHash() => r'fdf4502913c4cbf9918056db29411377ddd2748b';
 
 /// See also [AuthStateNotifier].
 @ProviderFor(AuthStateNotifier)
