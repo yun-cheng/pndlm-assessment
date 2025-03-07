@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class FontFamilyConstants {
   static const figtree = 'figtree';
 }
@@ -45,5 +47,13 @@ class TextStyleConstants {
     height: 11 / 16,
     letterSpacing: 0,
     color: Colors.white,
+  );
+
+  static const clock = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    height: 10 / 14,
+    letterSpacing: 0,
+    color: ColorConstants.softBlueDk,
   );
 }
