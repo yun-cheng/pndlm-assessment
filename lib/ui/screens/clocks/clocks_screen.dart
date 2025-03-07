@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pndlm_assessment/constants/time_zone_locations.dart';
 import 'package:pndlm_assessment/ui/common/background_mask_container.dart';
 
 import 'widgets/clock.dart';
@@ -21,9 +22,12 @@ class ClocksScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 88),
-                Clock(label: 'Las Vegas'),
+                Clock(
+                  label: 'Las Vegas',
+                  location: TimeZoneLocations.losAngeles,
+                ),
                 SizedBox(height: 25),
-                Clock(label: 'Taipei'),
+                Clock(label: 'Taipei', location: TimeZoneLocations.taipei),
                 SizedBox(height: 44),
                 LogoutButton(),
                 SizedBox(height: 16),

@@ -22,7 +22,7 @@ final timeProvider = AutoDisposeStreamProvider<DateTime>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef TimeRef = AutoDisposeStreamProviderRef<DateTime>;
-String _$angleRadiansHash() => r'95c1dd6f6e53918a83eb7142138bdf55ff35b0e2';
+String _$angleRadiansHash() => r'5ad9c5b48142df1533860d647cd9a86c51aea9ab';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -55,11 +55,13 @@ class AngleRadiansFamily extends Family<double> {
   const AngleRadiansFamily();
 
   /// See also [angleRadians].
-  AngleRadiansProvider call(
-    ClockHandType clockHandType,
-  ) {
+  AngleRadiansProvider call({
+    required ClockHandType type,
+    required String location,
+  }) {
     return AngleRadiansProvider(
-      clockHandType,
+      type: type,
+      location: location,
     );
   }
 
@@ -68,7 +70,8 @@ class AngleRadiansFamily extends Family<double> {
     covariant AngleRadiansProvider provider,
   ) {
     return call(
-      provider.clockHandType,
+      type: provider.type,
+      location: provider.location,
     );
   }
 
@@ -90,12 +93,14 @@ class AngleRadiansFamily extends Family<double> {
 /// See also [angleRadians].
 class AngleRadiansProvider extends AutoDisposeProvider<double> {
   /// See also [angleRadians].
-  AngleRadiansProvider(
-    ClockHandType clockHandType,
-  ) : this._internal(
+  AngleRadiansProvider({
+    required ClockHandType type,
+    required String location,
+  }) : this._internal(
           (ref) => angleRadians(
             ref as AngleRadiansRef,
-            clockHandType,
+            type: type,
+            location: location,
           ),
           from: angleRadiansProvider,
           name: r'angleRadiansProvider',
@@ -106,7 +111,8 @@ class AngleRadiansProvider extends AutoDisposeProvider<double> {
           dependencies: AngleRadiansFamily._dependencies,
           allTransitiveDependencies:
               AngleRadiansFamily._allTransitiveDependencies,
-          clockHandType: clockHandType,
+          type: type,
+          location: location,
         );
 
   AngleRadiansProvider._internal(
@@ -116,10 +122,12 @@ class AngleRadiansProvider extends AutoDisposeProvider<double> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.clockHandType,
+    required this.type,
+    required this.location,
   }) : super.internal();
 
-  final ClockHandType clockHandType;
+  final ClockHandType type;
+  final String location;
 
   @override
   Override overrideWith(
@@ -134,7 +142,8 @@ class AngleRadiansProvider extends AutoDisposeProvider<double> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        clockHandType: clockHandType,
+        type: type,
+        location: location,
       ),
     );
   }
@@ -147,13 +156,15 @@ class AngleRadiansProvider extends AutoDisposeProvider<double> {
   @override
   bool operator ==(Object other) {
     return other is AngleRadiansProvider &&
-        other.clockHandType == clockHandType;
+        other.type == type &&
+        other.location == location;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, clockHandType.hashCode);
+    hash = _SystemHash.combine(hash, type.hashCode);
+    hash = _SystemHash.combine(hash, location.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -162,8 +173,11 @@ class AngleRadiansProvider extends AutoDisposeProvider<double> {
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin AngleRadiansRef on AutoDisposeProviderRef<double> {
-  /// The parameter `clockHandType` of this provider.
-  ClockHandType get clockHandType;
+  /// The parameter `type` of this provider.
+  ClockHandType get type;
+
+  /// The parameter `location` of this provider.
+  String get location;
 }
 
 class _AngleRadiansProviderElement extends AutoDisposeProviderElement<double>
@@ -171,8 +185,9 @@ class _AngleRadiansProviderElement extends AutoDisposeProviderElement<double>
   _AngleRadiansProviderElement(super.provider);
 
   @override
-  ClockHandType get clockHandType =>
-      (origin as AngleRadiansProvider).clockHandType;
+  ClockHandType get type => (origin as AngleRadiansProvider).type;
+  @override
+  String get location => (origin as AngleRadiansProvider).location;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

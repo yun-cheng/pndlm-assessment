@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pndlm_assessment/models/clock_hand_type.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:vector_math/vector_math_64.dart' show radians;
 
 part 'time_provider.g.dart';
@@ -23,12 +24,18 @@ Stream<DateTime> time(Ref ref) async* {
 }
 
 @riverpod
-double angleRadians(Ref ref, ClockHandType clockHandType) {
-  final time = ref.watch(timeProvider).value;
+double angleRadians(
+  Ref ref, {
+  required ClockHandType type,
+  required String location,
+}) {
+  final localTime = ref.watch(timeProvider).value;
 
-  if (time == null) return 0;
+  if (localTime == null) return 0;
 
-  switch (clockHandType) {
+  final time = tz.TZDateTime.from(localTime, tz.getLocation(location));
+
+  switch (type) {
     case ClockHandType.hour:
       return time.hour * _radiansPerHour + (time.minute / 60) * _radiansPerHour;
     case ClockHandType.minute:

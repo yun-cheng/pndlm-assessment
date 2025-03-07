@@ -10,8 +10,9 @@ import 'draw_hand.dart';
 
 class Clock extends StatelessWidget {
   final String label;
+  final String location;
 
-  const Clock({super.key, required this.label});
+  const Clock({super.key, required this.label, required this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +27,21 @@ class Clock extends StatelessWidget {
             Positioned.fill(child: SvgPicture.asset(AssetConstants.clockFace)),
             ClockLabel(label: label),
             DrawHand(
+              location: location,
               type: ClockHandType.hour,
               length: 40,
               width: 4,
               color: ColorConstants.raspberry,
             ),
             DrawHand(
+              location: location,
               type: ClockHandType.minute,
               length: 80,
               width: 4,
               color: ColorConstants.raspberry,
             ),
             DrawHand(
+              location: location,
               type: ClockHandType.second,
               length: 80,
               width: 1,

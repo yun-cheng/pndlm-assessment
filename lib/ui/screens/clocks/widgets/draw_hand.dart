@@ -7,6 +7,7 @@ import 'package:pndlm_assessment/providers/time_provider.dart';
 
 class DrawHand extends ConsumerWidget {
   final ClockHandType type;
+  final String location;
   final double length;
   final double width;
   final Color color;
@@ -14,6 +15,7 @@ class DrawHand extends ConsumerWidget {
   const DrawHand({
     super.key,
     required this.type,
+    required this.location,
     required this.length,
     required this.width,
     required this.color,
@@ -21,7 +23,9 @@ class DrawHand extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final angleRadians = ref.watch(angleRadiansProvider(type));
+    final angleRadians = ref.watch(
+      angleRadiansProvider(type: type, location: location),
+    );
 
     return CustomPaint(
       size: Size.infinite,
