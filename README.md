@@ -1,8 +1,8 @@
 # PNDLM Assessment
 
-A Flutter app showcasing development skills for PNDLM's assessment.
+A Flutter app demonstrating development skills for the PNDLM assessment project.
 
-**Live Demo:** <https://pndlm-assessment.web.app/>
+**Live Demo: <https://pndlm-assessment.web.app/>**
 
 ## Assessment Overview
 
@@ -18,10 +18,14 @@ For a detailed side-by-side comparison of the design and implementation, [view t
 - Network requests with [dio](https://pub.dev/packages/dio) and custom interceptors for authorization and token refresh.
 - Routing and authentication redirection with [go_router](https://pub.dev/packages/go_router).
 - Local storage with [shared_preferences](https://pub.dev/packages/shared_preferences).
-- Securely storing access and refresh tokens using [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage).
+- Securely storing authentication tokens using [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage).
 - Immutable data models and JSON serialization using [built_value](https://pub.dev/packages/built_value).
 - Validate account input for a valid email format, phone number, or username, and ensure password meets minimum length requirements.
 - Draw scalable clocks with [CustomPainter](https://api.flutter.dev/flutter/rendering/CustomPainter-class.html) and use Riverpod to reduce unnecessary rebuilds when the clocks tick.
 - Support accurate timezone conversion using the [timezone](https://pub.dev/packages/timezone) package.
 - Custom app theme with consistent colors, typography, and input/checkbox styling.
 - Automated deployment to Firebase Hosting via GitHub Actions.
+
+## Code Explanations
+
+You can search for `// !` in the codebase to find code explanations.

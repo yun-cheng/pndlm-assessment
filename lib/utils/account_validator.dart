@@ -19,6 +19,7 @@ final _usernameRegExp = RegExp(r'^\w{3,}$');
 AccountValidationError? accountValidator(String value) {
   if (value.isEmpty) {
     return AccountValidationError.empty;
+    // ! Account should be valid email, phone, or username
   } else if (!EmailValidator.validate(value) &&
       !_phoneRegExp.hasMatch(value) &&
       !_usernameRegExp.hasMatch(value)) {

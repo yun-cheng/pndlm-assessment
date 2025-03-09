@@ -15,9 +15,9 @@ final _radiansPerHour = radians(360 / 12);
 Stream<DateTime> time(Ref ref) async* {
   yield DateTime.now();
 
+  // ! Wait until the start of the next second to ensure the clock is accurate
   final waitUntilNextSecond = 1000 - DateTime.now().millisecond;
   await Future.delayed(Duration(milliseconds: waitUntilNextSecond));
-
   yield DateTime.now();
 
   yield* Stream.periodic(const Duration(seconds: 1), (_) => DateTime.now());

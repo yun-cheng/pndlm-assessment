@@ -10,6 +10,7 @@ class ClockLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // ! Adjust the label size and position according to the clock size
         return Transform.translate(
           offset: Offset(0, 150 / 240 * constraints.maxWidth),
           child: Transform.scale(

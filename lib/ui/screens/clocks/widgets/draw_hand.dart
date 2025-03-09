@@ -23,6 +23,7 @@ class DrawHand extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ! Getting angleRadians individually for each hand prevents rebuilding the entire clock every second, allowing the hour and minute hands to update only once per minute
     final angleRadians = ref.watch(
       angleRadiansProvider(type: type, location: location),
     );
@@ -56,6 +57,7 @@ class _Painter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = (Offset.zero & size).center;
 
+    // ! Calculate the actual length and width based on the clock size
     final realLength = length / 240 * size.shortestSide;
     final realWidth = width / 240 * size.shortestSide;
     final angle = angleRadians - math.pi / 2.0;
