@@ -53,6 +53,7 @@ class AuthRepository implements IAuthRepository {
     required bool shouldRememberUser,
   }) async {
     final dio = _ref.read(dioProvider);
+    final tokenStorage = _ref.read(tokenStorageProvider);
 
     try {
       final response = await dio.post(
@@ -70,6 +71,9 @@ class AuthRepository implements IAuthRepository {
 
       if (response.statusCode == HttpStatus.ok) {
         final data = response.data;
+
+        await tokenStorage.saveAccessToken(data['accessToken']);
+        await tokenStorage.saveRefreshToken(data['refreshToken']);
 
         return serializers.deserializeWith(User.serializer, data) as User;
       } else {
