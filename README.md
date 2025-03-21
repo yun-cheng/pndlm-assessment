@@ -4,6 +4,11 @@ A Flutter app demonstrating development skills for the PNDLM assessment project.
 
 **Live Demo: <https://pndlm-assessment.web.app/>**
 
+Test account:
+
+- Username: emilys
+- Password: emilyspass
+
 ## Assessment Overview
 
 This project follows the instructions provided in the [pndlm/clockapp](https://github.com/pndlm/clockapp) GitHub repository and aligns with the provided Figma design to meet all assessment requirements.
@@ -29,3 +34,9 @@ For a detailed side-by-side comparison of the design and implementation, [view t
 ## Code Explanations
 
 You can search for `// !` in the codebase to find code explanations.
+
+## Todo List
+
+- Remove `#` from URL
+  - <https://docs.flutter.dev/ui/navigation/url-strategies>
+- Use grid layout to arrange clocks in Clocks Screen
